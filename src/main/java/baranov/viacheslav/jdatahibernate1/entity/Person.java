@@ -1,26 +1,19 @@
 package baranov.viacheslav.jdatahibernate1.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+
 @Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "PERSONS")
 public class Person {
-    @Id
-    @Column(nullable = false, length = 15)
-    private String name;
-
-    @Id
-    @Column(nullable = false, length = 25)
-    private String surname;
-
-    @Id
-    @Column(nullable = false)
-    private int age;
+    @EmbeddedId
+    private PersonId personId;
 
     @Column(name = "phone_number", nullable = false, length = 12)
     private String phoneNumber;
@@ -30,11 +23,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "\nPerson {name= " + name
-                + ", surname= " + surname
-                + ", age= " + age
+        return "\nPerson {" + personId
                 + ", phoneNumber= " + phoneNumber
                 + ", city= " + city
                 + "}";
     }
+
 }

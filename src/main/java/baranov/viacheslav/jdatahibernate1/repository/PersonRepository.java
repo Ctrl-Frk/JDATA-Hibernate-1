@@ -19,4 +19,5 @@ public class PersonRepository {
                 .setParameter("city", city)
                 .getResultList();
     }
+
 }
